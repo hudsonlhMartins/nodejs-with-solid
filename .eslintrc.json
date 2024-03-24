@@ -1,0 +1,10 @@
+{
+    "extends":[
+        "@rocketseat/eslint-config/node"
+    ],
+    "rules":{
+        "camelcase":"off",
+        "no-param-reassign":"off",
+        "no-useless-constructor":"off"
+    }
+} 
