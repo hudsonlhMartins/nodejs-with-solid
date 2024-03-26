@@ -224,7 +224,7 @@
   dependencies:
     fast-json-stringify "^5.7.0"
 
-"@fastify/jwt@^8.0.0":
+"@fastify/jwt@8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@fastify/jwt/-/jwt-8.0.0.tgz#66aed823457ccc90579c5ce680b004db01053827"
   integrity sha512-pJHjmZaokteZFMbsVVt7pbyJpbDogTnpl/aD7eR3vLOPgfktp4k4gUM6cd7RtjL/Ol1qDwL5mup+vdNlZI3K0Q==
