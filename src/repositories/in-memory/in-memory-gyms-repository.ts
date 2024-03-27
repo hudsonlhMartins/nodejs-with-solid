@@ -34,7 +34,6 @@ export class InMemoryGymsRepository implements GymsRepository {
           {latitude: gym.latitude.toNumber(), longitude: gym.longitude.toNumber()}
         )
 
-        console.log('distance', distance)
         return distance < 10
       })
       return gymsNear
