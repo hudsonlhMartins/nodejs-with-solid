@@ -11,11 +11,11 @@ export const searchGymController = async (
     page: z.coerce.number().min(1).default(1),
   })
 
-  const searchQuery = searchQuerySchema.parse(request.body)
+  const searchQuery = searchQuerySchema.parse(request.query)
 
   const { q, page } = searchQuery
 
   const searchGymUseCase = makeSearchGymsUseCase()
   const { gym } = await searchGymUseCase.execute({ query: q, page })
-  return reply.status(201).send({ gym })
+  return reply.status(200).send({ gym })
 }

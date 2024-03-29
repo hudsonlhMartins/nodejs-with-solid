@@ -10,7 +10,7 @@ import { Decimal } from '@prisma/client/runtime/library'
 interface CheckinUseCaseProps {
   userId: string
   gymId: string
-  userLatidute: number
+  userLatitude: number
   userLongitude: number
 }
 
@@ -20,37 +20,36 @@ interface CheckinUseCaseResponse {
 
 export class CheckinUseCase {
   constructor(
-      private checkInsRepository: CheckInsRepository,
-      private gymsRepository: GymsRepository
-    ) {}
+    private checkInsRepository: CheckInsRepository,
+    private gymsRepository: GymsRepository,
+  ) {}
 
   async execute({
     gymId,
     userId,
-    userLatidute, 
-    userLongitude
+    userLatitude,
+    userLongitude,
   }: CheckinUseCaseProps): Promise<CheckinUseCaseResponse> {
-
     const gym = await this.gymsRepository.findById(gymId)
-    
-    if(!gym) {
+
+    if (!gym) {
       throw new ResourceNotExist()
     }
 
     // calcular a distacia entre o usuario e a academia, se for maior que 100m, lançar um erro
-    const {latitude, longitude} = gym
+    const { latitude, longitude } = gym
     const _latitude = latitude as Decimal
     const _longitude = longitude as Decimal
     const distance = getDistanceBetweenCoordinates(
-      { latitude: userLatidute, longitude: userLongitude },
-      { latitude: _latitude.toNumber(), longitude: _longitude.toNumber() }
+      { latitude: userLatitude, longitude: userLongitude },
+      { latitude: _latitude.toNumber(), longitude: _longitude.toNumber() },
     )
-  
+
     const MAX_DISTANCE_IN_KIlOMETERS = 0.1
-    if(distance > MAX_DISTANCE_IN_KIlOMETERS) {
+    if (distance > MAX_DISTANCE_IN_KIlOMETERS) {
       throw new UserTooFarGym()
     }
-    
+
     const sheckInOnSameDay = await this.checkInsRepository.findBtUserIdOnDate(
       userId,
       new Date(),

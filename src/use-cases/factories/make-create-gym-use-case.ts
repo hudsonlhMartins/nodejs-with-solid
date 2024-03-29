@@ -1,4 +1,3 @@
-
 import { PrismaGymsRepository } from '@/repositories/prisma/prisma-gyms-repository'
 import { CreateGymUsecase } from '../create-gym'
 
