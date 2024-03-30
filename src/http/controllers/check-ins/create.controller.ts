@@ -16,16 +16,18 @@ export const createCheckInsController = async (
   })
 
   const checkInsBody = createCheckInsBodySchema.parse(request.body)
-  const { gymId } = createCheckInParamsSchema.parse(request.query)
+  const { gymId } = createCheckInParamsSchema.parse(request.params)
 
   const { latitude, longitude } = checkInsBody
 
   const createGymUseCase = makeCheckInUseCase()
-  await createGymUseCase.execute({
+  const {checkIn}= await createGymUseCase.execute({
     gymId,
     userId: request.user.sub,
     userLatitude: latitude,
     userLongitude: longitude,
   })
-  return reply.status(201).send()
+  return reply.status(201).send({
+    checkIn
+  })
 }

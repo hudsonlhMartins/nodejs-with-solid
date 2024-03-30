@@ -10,7 +10,7 @@ export const validateCheckInsController = async (
     checkInId: z.string().uuid(),
   })
 
-  const { checkInId } = validateCheckInParamsSchema.parse(request.query)
+  const { checkInId } = validateCheckInParamsSchema.parse(request.params)
 
   const validateGymUseCase = makeValidateUseCase()
   await validateGymUseCase.execute({

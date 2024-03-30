@@ -9,5 +9,5 @@ export const checkInsMetricsontroller = async (
   const { checkInsCounter } = await checkInsMetricsUseCase.execute({
     userId: request.user.sub,
   })
-  return reply.status(201).send({ checkInsCounter })
+  return reply.status(200).send({ checkInsCounter })
 }

@@ -19,5 +19,5 @@ export const checkInsHistoryontroller = async (
     page,
     userId: request.user.sub,
   })
-  return reply.status(201).send({ checkIns })
+  return reply.status(200).send({ checkIns })
 }

@@ -11,8 +11,8 @@ const app = fastify()
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 })
-app.register(usersRoutes)
 app.register(gymsRoutes)
+app.register(usersRoutes)
 app.register(checkInsRoutes)
 
 app.setErrorHandler((error, _, reply) => {

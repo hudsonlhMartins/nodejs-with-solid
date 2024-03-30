@@ -19,6 +19,9 @@ export const createGymController = async (
   const { ...props } = registerBody
 
   const createGymUseCase = makeCreateGymUseCase()
-  await createGymUseCase.execute({ ...props })
-  return reply.status(201).send()
+  const {gym} = await createGymUseCase.execute({ ...props })
+
+  return reply.status(201).send({
+    gym,
+  })
 }

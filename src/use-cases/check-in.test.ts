@@ -35,7 +35,7 @@ describe('CheckIn Use Case', () => {
     const { checkIn } = await sut.execute({
       gymId: 'gym_id',
       userId: 'user_id',
-      userLatidute: 0,
+      userLatitude: 0,
       userLongitude: 0,
     })
 
@@ -47,7 +47,7 @@ describe('CheckIn Use Case', () => {
     await sut.execute({
       gymId: 'gym_id',
       userId: 'user_id',
-      userLatidute: 0,
+      userLatitude: 0,
       userLongitude: 0,
     })
 
@@ -55,7 +55,7 @@ describe('CheckIn Use Case', () => {
       await sut.execute({
         gymId: 'gym_id',
         userId: 'user_id',
-        userLatidute: 0,
+        userLatitude: 0,
         userLongitude: 0,
       })
     }).rejects.toBeInstanceOf(UserAlreadyCheckError)
@@ -66,7 +66,7 @@ describe('CheckIn Use Case', () => {
     await sut.execute({
       gymId: 'gym_id',
       userId: 'user_id',
-      userLatidute: 0,
+      userLatitude: 0,
       userLongitude: 0,
     })
 
@@ -74,7 +74,7 @@ describe('CheckIn Use Case', () => {
     const { checkIn } = await sut.execute({
       gymId: 'gym_id',
       userId: 'user_id',
-      userLatidute: 0,
+      userLatitude: 0,
       userLongitude: 0,
     })
     expect(checkIn).toEqual(expect.any(Object))
@@ -97,7 +97,7 @@ describe('CheckIn Use Case', () => {
       await sut.execute({
         gymId: 'gym_id_2',
         userId: 'user_id',
-        userLatidute:  -22.3381027,
+        userLatitude:  -22.3381027,
         userLongitude: -41.7529428,
       })
     }).rejects.toBeInstanceOf(UserTooFarGym)
