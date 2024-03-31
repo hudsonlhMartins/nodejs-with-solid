@@ -11,8 +11,10 @@ export const refreshController = async (
     se daqui para baixo continuar sig que o refrsh token existir e que ele ainda e valido
   */
 
+    const roles = request.user.role
+
     const token = await reply.jwtSign(
-      {},
+      {roles},
       {
         sign: {
           sub: request.user.sub,
@@ -20,7 +22,7 @@ export const refreshController = async (
       },
     )
     const refrshToken = await reply.jwtSign(
-      {},
+      {roles},
       {
         sign: {
           sub: request.user.sub,
