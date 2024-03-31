@@ -27,8 +27,24 @@ export const autheticateController = async (
         },
       },
     )
+    const refrshToken = await reply.jwtSign(
+      {},
+      {
+        sign: {
+          sub: user.id,
+          expiresIn: '15d',
+        },
+      },
+    )
 
-    return reply.status(200).send({
+    return reply
+    .setCookie('refreshToken', refrshToken, {
+      path: '/',
+      httpOnly: true,
+      sameSite: 'strict',
+      secure: true,
+    })
+    .status(200).send({
       token,
     })
   } catch (err) {
