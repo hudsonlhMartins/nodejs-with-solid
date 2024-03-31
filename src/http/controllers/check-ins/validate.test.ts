@@ -13,7 +13,7 @@ describe('Validate Check-ins (e2e)', () => {
   })
 
   it('should be able to validate check-ins', async () => {
-    const { token } = await createAndAuthUser(app)
+    const { token } = await createAndAuthUser(app, 'ADMIN')
     const gymData = await request(app.server)
       .post('/gyms')
       .set('Authorization', `Bearer ${token}`)
